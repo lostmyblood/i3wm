@@ -1,0 +1,101 @@
+configuration {
+    modi:                "drun";
+    show-icons:          false;
+    drun-display-format: "<span text_transform='lowercase'>{name}</span>";
+    display-drun:        ">";
+    disable-history:     false;
+}
+
+* {
+    bg:      #000000;
+    bg-alt:  #9a9a9a;
+    fg:      #969696;
+    fg-alt:  #000000;
+    dim:     #5a5a5a;
+    line:    #9a9a9a;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            600px;
+    background-color: @bg;
+    border:           1px;
+    border-color:     @line;
+    border-radius:    0;
+    font:             "Iosevka 11";
+}
+
+/* Main layout: [ left panel | divider | right list ] */
+mainbox {
+    orientation: horizontal;
+    spacing:     16px;
+    padding:     16px;
+    children:    [ leftpanel, divider, listview ];
+}
+
+/* Left panel: search input */
+leftpanel {
+    orientation: vertical;
+    expand:      false;
+    width:       200px;
+    children:    [ inputbar ];
+}
+
+inputbar {
+    spacing:       8px;
+    padding:       3px 12px;
+    border:        1px;
+    border-color:  @line;
+    border-radius: 0;
+    children:      [ prompt, entry ];
+}
+
+prompt {
+    text-color: @fg;
+}
+
+entry {
+    placeholder-color: @dim;
+    cursor: text;
+    cursor-width: 2px;
+}
+
+/* Vertical divider */
+divider {
+    expand:           false;
+    width:            1px;
+    background-color: @line;
+    children:         [];
+}
+
+/* Right panel: app names */
+listview {
+    lines:        10;
+    columns:      1;
+    fixed-height: true;
+    scrollbar:    false;
+    spacing:      2px;
+    cycle:        true;
+}
+
+element {
+    orientation:   horizontal;
+    padding:       2px 10px;
+    border-radius: 0;
+    children:      [ element-text ];
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color:     inherit;
+    markup:         true;
+}
+
+element selected.normal {
+    background-color: @bg-alt;
+    text-color:       @fg-alt;
+}
